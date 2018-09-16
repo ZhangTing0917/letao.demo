@@ -4,21 +4,17 @@
 $(function(){
     var keyWord='';
     var markArr = [];
-   $('.search>input[type=button]').click(function(){
+   $('.search>input[type=button]').on('tap',function(){
        keyWord = $(this).siblings().val();
-       //for(var i = 0;i<markArr.length;i++){
-       //    console.log(markArr[i]);
-       //    console.log(keyWord);
-       //    //console.log('------');
-       //    if(keyWord==markArr[i]){
-       //        markArr.splice(i,markArr[i]);
-       //        console.log(markArr);
-       //    }
-       //}
+       for(var i = 0;i<markArr.length;i++){
+           if(keyWord==markArr[i]){
+               markArr.splice(i,1);
+           }
+       }
        //markArr.forEach(function(index,value){
        //    console.log(keyWord,value);
        //    if(keyWord==value){
-       //        markArr.splice(index,value);
+       //        markArr.splice(index,1);
        //        console.log(markArr);
        //    }
        //})
@@ -29,7 +25,6 @@ $(function(){
        }
    });
     markArr = JSON.parse(localStorage.getItem('keyWord'))||[];
-    //var html = '';
     if(markArr){
         console.log(markArr);
       var html = template('history-content',{markArr:markArr});
@@ -40,5 +35,4 @@ $(function(){
         markArr = [];
         $('.history>ul').html('');
     })
-
 })

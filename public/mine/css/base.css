@@ -1,3 +1,6 @@
+body {
+  background-color: #fff;
+}
 ul,
 a,
 li {
@@ -111,4 +114,15 @@ li {
   background-color: #006699;
   color: #fff;
   margin: 0px auto 10px auto;
+}
+.register-content {
+  position: relative;
+}
+.register-content .getCode {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.register-content > a {
+  padding: 10px;
 }
