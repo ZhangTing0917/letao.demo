@@ -5,14 +5,19 @@
     <title></title>
 </head>
 <body>
-
+<button id="btn">按钮</button>
 </body>
 <script src="assets/zepto/zepto.min.js"></script>
 
 <script>
-    var str = '12345';
-    console.log(str.length);
-    var data = str.indexOf('?');
-    console.log(str.substr(data));
+//    var str = '12345';
+//    console.log(str.length);
+//    var data = str.indexOf('?');
+//    console.log(str.substr(data));
+document.querySelector("#btn").onclick = function(){
+    setTimeout( () => {
+        console.log(this);
+    },1000)
+}
 </script>
 </html>

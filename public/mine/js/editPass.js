@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2018/9/16.
+ * Created by Administrator on 2018/9/19.
  */
 $(function(){
     var registerCode ;
@@ -20,37 +20,37 @@ $(function(){
         var userPassAgain = $('.userPassAgain').val().trim();
         var userCode = $('.userCode').val().trim();
         if(!userName){
-            mui.toast("è¯·å¡«å†™å§“å");
+            mui.toast("ÇëÌîĞ´ĞÕÃû");
             return;
         }
         if(userNumber.length!=11){
-            mui.toast("è¯·å¡«å†™æ­£ç¡®å·ç ");
+            mui.toast("ÇëÌîĞ´ÕıÈ·ºÅÂë");
             return;
         }
         if(!userPass){
-            mui.toast("è¯·å¡«å†™å¯†ç ");
+            mui.toast("ÇëÌîĞ´ÃÜÂë");
             return;
         }
         if(!(userPassAgain==userPass)){
-            mui.toast("è¯·ç¡®è®¤å¯†ç æ­£ç¡®");
+            mui.toast("ÇëÈ·ÈÏÃÜÂëÕıÈ·");
             return;
         }
         if(!(userCode==registerCode)){
-            mui.toast("è¯·è¾“å…¥éªŒè¯ç ");
+            mui.toast("ÇëÊäÈëÑéÖ¤Âë");
             return;
         }
-        //isExist(userName,"è¯·å¡«å†™å§“å");
-        //isExist(userNumber,"è¯·å¡«å†™å·ç ");
-        //isExist(userPass,"è¯·å¡«å†™å¯†ç ");
-        //isExist((),"è¯·ç¡®è®¤å¯†ç æ­£ç¡®");
-        //isExist((userCode==registerCode),"è¯·è¾“å…¥éªŒè¯ç ");
+        //isExist(userName,"ÇëÌîĞ´ĞÕÃû");
+        //isExist(userNumber,"ÇëÌîĞ´ºÅÂë");
+        //isExist(userPass,"ÇëÌîĞ´ÃÜÂë");
+        //isExist((),"ÇëÈ·ÈÏÃÜÂëÕıÈ·");
+        //isExist((userCode==registerCode),"ÇëÊäÈëÑéÖ¤Âë");
         $.ajax({
             url:"/user/register",
             type:"post",
             data:{username:userName,password:userPass,mobile:userNumber,vCode:userCode},
             success:function(res){
                 if(res.success){
-                    mui.toast("æ³¨å†ŒæˆåŠŸ");
+                    mui.toast("×¢²á³É¹¦");
                     setTimeout(function(){
                         location.href = "login.html";
                     },2000)
