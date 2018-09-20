@@ -1,11 +1,24 @@
 /**
  * Created by Administrator on 2018/9/19.
  */
+var userInform ;
+$.ajax({
+    url:"/user/queryUserMessage",
+    type:"get",
+    async:false,
+    success:function(res){
+        if(res.error){
+            location.href='login.html';
+            return
+        };
+        userInform = res.success;
+    }
+})
 $(function(){
     var registerCode ;
     $('.getCode').on('tap',function(){
         $.ajax({
-            url:'/user/vCode',
+            url:'/user/vCodeForUpdatePassword',
             type:'get',
             success:function(res){
                 registerCode = res.vCode;
@@ -14,43 +27,34 @@ $(function(){
         })
     });
     $('[type = button]').on('tap',function(){
-        var userName = $('.userName').val().trim();
-        var userNumber = $('.userNumber').val().trim();
+        var userNewPass = $('.userNewPass').val().trim();
         var userPass = $('.userPass').val().trim();
         var userPassAgain = $('.userPassAgain').val().trim();
         var userCode = $('.userCode').val().trim();
-        if(!userName){
-            mui.toast("ÇëÌîĞ´ĞÕÃû");
-            return;
-        }
-        if(userNumber.length!=11){
-            mui.toast("ÇëÌîĞ´ÕıÈ·ºÅÂë");
-            return;
-        }
         if(!userPass){
-            mui.toast("ÇëÌîĞ´ÃÜÂë");
+            mui.toast("è¯·å¡«å†™åŸå§‹å¯†ç ");
             return;
         }
-        if(!(userPassAgain==userPass)){
-            mui.toast("ÇëÈ·ÈÏÃÜÂëÕıÈ·");
+        if(!userNewPass){
+            mui.toast("è¯·å¡«å†™æ–°å¯†ç ");
+            return;
+        }
+        if(!(userPassAgain==userNewPass)){
+            mui.toast("è¯·ç¡®è®¤å¯†ç æ­£ç¡®");
             return;
         }
         if(!(userCode==registerCode)){
-            mui.toast("ÇëÊäÈëÑéÖ¤Âë");
+            mui.toast("è¯·è¾“å…¥éªŒè¯ç ");
             return;
         }
-        //isExist(userName,"ÇëÌîĞ´ĞÕÃû");
-        //isExist(userNumber,"ÇëÌîĞ´ºÅÂë");
-        //isExist(userPass,"ÇëÌîĞ´ÃÜÂë");
-        //isExist((),"ÇëÈ·ÈÏÃÜÂëÕıÈ·");
-        //isExist((userCode==registerCode),"ÇëÊäÈëÑéÖ¤Âë");
         $.ajax({
-            url:"/user/register",
+            url:"/user/updatePassword",
             type:"post",
-            data:{username:userName,password:userPass,mobile:userNumber,vCode:userCode},
+            data:{oldPassword:userPass,newPassword:userNewPass,vCode:userCode},
             success:function(res){
+                //console.log(res);
                 if(res.success){
-                    mui.toast("×¢²á³É¹¦");
+                    mui.toast("ä¿®æ”¹å¯†ç æˆåŠŸ");
                     setTimeout(function(){
                         location.href = "login.html";
                     },2000)
